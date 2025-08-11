@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: gold_dim_variable
+    description: "Dimensión de variables monetarias"
+    columns:
+      - name: VARIABLE_ID
+        description: "Identificador único de la variable"
+        tests:
+          - unique
+          - not_null
+      - name: NOMBRE_VARIABLE
+        description: "Nombre descriptivo de la variable"
+        tests:
+          - not_null
+
+  - name: gold_dim_tiempo
+    description: "Dimensión de tiempo"
+    columns:
+      - name: FECHA
+        description: "Fecha del registro"
+        tests:
+          - unique
+          - not_null
+      - name: anio
+        description: "Año"
+        tests:
+          - not_null
+
+  - name: gold_dim_hechos_monetarios
+    description: "Tabla de hechos con valores monetarios"
+    columns:
+      - name: VARIABLE_ID
+        description: "Identificador único del hecho"
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('gold_dim_variable')
+              field: VARIABLE_ID
+      - name: FECHA
+        description: "Fecha del hecho"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('gold_dim_tiempo')
+              field: FECHA
+      - name: VALOR
+        description: "Valor registrado"
+        tests:
+          - not_null
