@@ -86,8 +86,8 @@ if todas_las_series:
 # %% CONEXION A SNOWFLAKE
 try:
     conn = snowflake.connector.connect(
-        user="GALIMBERTIEZEQUIEL",
-        password="Fx3CSPvuSaQPCQH",
+        user="USUARIO_SNOWFLAKE",
+        password="CLAVE_SNOWFLAKE",
         account = 'GHHGFVF-GL16731',
         warehouse="INGEST_WAREHOUSE",
         database="BCRA_RAW",
